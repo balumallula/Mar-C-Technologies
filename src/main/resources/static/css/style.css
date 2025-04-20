@@ -150,17 +150,19 @@ a:hover {
 
  
 
-/* Enhanced Logo Animation */
+
+/* Logo - Enhanced with Animation & Alignment */
 .logo-container {
   position: relative;
   display: inline-block;
   overflow: visible;
+  transition: var(--transition);
 }
 
 .logo-img {
-  height: 70px;
-  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  transform-origin:left;
+  height: 70px; /* Adjusted logo height */
+  transition: var(--transition);
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.4)); /* Subtler shadow */
 }
 
 .logo-text {
@@ -168,63 +170,25 @@ a:hover {
   left: 100%;
   top: 50%;
   transform: translateY(-50%);
-  margin-left: 15px;
+  margin-left: 10px; /* Reduced margin */
   opacity: 0;
   white-space: nowrap;
-  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  font-size: 1rem;
+  transition: var(--transition);
+  font-size: 1.1rem; /* Adjusted font size */
   font-weight: 700;
   color: var(--white);
+  text-shadow: var(--text-shadow);
 }
 
 .logo-container:hover .logo-img {
-  transform: scale(0.8);
+  transform: scale(0.95) rotate(-3deg); /* Subtler hover effect */
+  filter: drop-shadow(0 2px 5px rgba(255, 107, 53, 0.5)); /* Adjusted hover shadow */
 }
 
 .logo-container:hover .logo-text {
   opacity: 1;
-  margin-left: 20px;
-}
-
-/* Particle Background (Optional) */
-.particle-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  opacity: 0.3;
-}
-
- 
-
- .logo-text span {
-  color: #ff6b35; /* Accenture purple */
-  position: relative;
-  margin-left: 8px;
-  display: inline-block;
-}
-
-/* Optional: Add the > symbol like Accenture */
-.logo-text::after {
-  content: '';
-  color: #ff6b35;
-  font-weight: 300;
-  margin-left: 4px;
-}
-
-/* Hover effects */
-.logo-link:hover .logo-img {
-  transform: translateX(-2px);
-}
-
-.logo-link:hover .logo-text {
-  color: white;
-}
-
-.logo-link:hover .logo-text span {
-  color: #ff6b35; /* Lighter purple on hover */
+  margin-left: 15px; /* Adjusted hover margin */
+  color: var(--primary-color);
 }
 
 /* Scrolled state */
@@ -264,6 +228,7 @@ a:hover {
   justify-content: center;
   align-items: center;
    width: 100%;
+   list-style: none;
    
 }
 
