@@ -15,16 +15,19 @@ import com.marsc.marsc_web.Repositories.ContactRepository;
 import com.marsc.marsc_web.Services.MailService;
 
 @Controller
-@RequestMapping("/Marsc")
+@RequestMapping("/")
 public class DashboardController {
 
- 
+    @GetMapping
+    public String redirectToDashboard() {
+        return "redirect:/dashboard";
+    }
+
     @GetMapping("/dashboard")
     public String dashboard() {
-         
         return "index"; 
     }
-    
+
     @Autowired
     private ContactRepository contactRepository;
 
@@ -43,14 +46,13 @@ public class DashboardController {
             contact.getSubject(),
             contact.getMessage()
         );
-        
-        // Send response to user
+
         mailService.sendResponseToUser(
             contact.getEmail(),
             contact.getName()
         );
 
         redirectAttributes.addFlashAttribute("message", "Thanks! Your message has been sent.");
-        return "redirect:/Marsc/dashboard";
+        return "redirect:/dashboard";
     }
 }
