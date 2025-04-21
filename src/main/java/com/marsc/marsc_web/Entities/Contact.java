@@ -2,6 +2,7 @@ package com.marsc.marsc_web.Entities;
 
 import jakarta.persistence.*;
 
+
 import lombok.*;
 
 @Entity
@@ -10,11 +11,11 @@ import lombok.*;
  
 public class Contact {
 
-    public Long getId() {
+    public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -52,7 +53,7 @@ public class Contact {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String name;
 
