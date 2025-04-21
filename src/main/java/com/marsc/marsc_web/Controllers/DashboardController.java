@@ -17,7 +17,7 @@ import com.marsc.marsc_web.Services.MailService;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/Marsc")
 public class DashboardController {
 
     @Autowired
@@ -28,7 +28,7 @@ public class DashboardController {
 
     @GetMapping
     public String redirectToDashboard() {
-        return "redirect:/dashboard";
+        return "redirect:/Marsc/dashboard";
     }
 
     @GetMapping("/dashboard")
@@ -63,6 +63,6 @@ public class DashboardController {
         );
 
         redirectAttributes.addFlashAttribute("message", "Thanks! Your message has been sent.");
-        return "redirect:/dashboard";
+        return "redirect:/Marsc/dashboard";
     }
 }
