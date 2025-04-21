@@ -61,6 +61,6 @@ public class Contact {
 
     private String subject;
 
-    @Column(length = 500)
+    
     private String message;
 }
