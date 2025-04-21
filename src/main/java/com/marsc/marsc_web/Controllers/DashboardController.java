@@ -26,10 +26,10 @@ public class DashboardController {
     @Autowired
     private MailService mailService;
 
-//    @GetMapping
-//    public String redirectToDashboard() {
-//        return "redirect:/dashboard";
-//    }
+    @GetMapping
+    public String redirectToDashboard() {
+        return "redirect:/dashboard";
+    }
 
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
