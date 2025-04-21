@@ -37,36 +37,36 @@ public class DashboardController {
         return "index"; 
     }
 
-    @PostMapping("/contact")
-    public String submitContactForm(
-        @Valid @ModelAttribute("contact") Contact contact,
-        BindingResult result,
-        Model model,
-        RedirectAttributes redirectAttributes) {
-
-        if (result.hasErrors()) {
-            model.addAttribute("contact", contact);
-            model.addAttribute("message", "Please fill in all fields correctly.");
-            return "index"; // Stay on the same page with validation errors
-        }
-
-        // Save contact info to DB
-        contactRepository.save(contact);
-
-        // Send emails
-        mailService.sendContactEmail(
-            contact.getEmail(),
-            contact.getName(),
-            contact.getSubject(),
-            contact.getMessage()
-        );
-
-        mailService.sendResponseToUser(
-            contact.getEmail(),
-            contact.getName()
-        );
-
-        redirectAttributes.addFlashAttribute("message", "Thanks! Your message has been sent.");
-        return "redirect:/dashboard";
-    }
+//    @PostMapping("/contact")
+//    public String submitContactForm(
+//        @Valid @ModelAttribute("contact") Contact contact,
+//        BindingResult result,
+//        Model model,
+//        RedirectAttributes redirectAttributes) {
+//
+//        if (result.hasErrors()) {
+//            model.addAttribute("contact", contact);
+//            model.addAttribute("message", "Please fill in all fields correctly.");
+//            return "index"; // Stay on the same page with validation errors
+//        }
+//
+//        // Save contact info to DB
+//        contactRepository.save(contact);
+//
+//        // Send emails
+//        mailService.sendContactEmail(
+//            contact.getEmail(),
+//            contact.getName(),
+//            contact.getSubject(),
+//            contact.getMessage()
+//        );
+//
+//        mailService.sendResponseToUser(
+//            contact.getEmail(),
+//            contact.getName()
+//        );
+//
+//        redirectAttributes.addFlashAttribute("message", "Thanks! Your message has been sent.");
+//        return "redirect:/dashboard";
+//    }
 }
