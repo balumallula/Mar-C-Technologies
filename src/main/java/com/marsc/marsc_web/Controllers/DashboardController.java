@@ -1,6 +1,5 @@
 package com.marsc.marsc_web.Controllers;
 
- 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,22 +13,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.marsc.marsc_web.Entities.Contact;
 import com.marsc.marsc_web.Repositories.ContactRepository;
 import com.marsc.marsc_web.Services.MailService;
-import jakarta.validation.Valid;
 
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/")
 public class DashboardController {
-
-    @GetMapping
-    public String redirectToDashboard() {
-        return "redirect:/dashboard";
-    }
-
-    @GetMapping("/dashboard")
-    public String dashboard() {
-        return "index"; 
-    }
 
     @Autowired
     private ContactRepository contactRepository;
@@ -37,17 +26,34 @@ public class DashboardController {
     @Autowired
     private MailService mailService;
 
+    @GetMapping
+    public String redirectToDashboard() {
+        return "redirect:/dashboard";
+    }
+
+    @GetMapping("/dashboard")
+    public String dashboard(Model model) {
+        model.addAttribute("contact", new Contact()); // Ensure the form model is present
+        return "index"; 
+    }
+
     @PostMapping("/contact")
-    public String submitContactForm(@ModelAttribute Contact contact,BindingResult result, Model model, RedirectAttributes redirectAttributes) {
-        // Save to DB (optional)
-    	
-    	 if (result.hasErrors()) {
-    	        System.out.println("Validation errors: " + result.getAllErrors());
-    	        return "redirect:/dashboard";
-    	    }
+    public String submitContactForm(
+        @Valid @ModelAttribute("contact") Contact contact,
+        BindingResult result,
+        Model model,
+        RedirectAttributes redirectAttributes) {
+
+        if (result.hasErrors()) {
+            model.addAttribute("contact", contact);
+            model.addAttribute("message", "Please fill in all fields correctly.");
+            return "index"; // Stay on the same page with validation errors
+        }
+
+        // Save contact info to DB
         contactRepository.save(contact);
 
-        // Send Email
+        // Send emails
         mailService.sendContactEmail(
             contact.getEmail(),
             contact.getName(),
