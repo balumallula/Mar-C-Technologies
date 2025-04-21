@@ -26,12 +26,12 @@ public class DashboardController {
     @Autowired
     private MailService mailService;
 
-    @GetMapping
-    public String redirectToDashboard() {
-        return "redirect:/dashboard";
-    }
+//    @GetMapping
+//    public String redirectToDashboard() {
+//        return "redirect:/dashboard";
+//    }
 
-    @GetMapping("/dashboard")
+    @GetMapping
     public String dashboard(Model model) {
         model.addAttribute("contact", new Contact()); // Ensure the form model is present
         return "index"; 
