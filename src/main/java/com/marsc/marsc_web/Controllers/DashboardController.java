@@ -17,7 +17,7 @@ import com.marsc.marsc_web.Services.MailService;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping
 public class DashboardController {
 
     @Autowired
