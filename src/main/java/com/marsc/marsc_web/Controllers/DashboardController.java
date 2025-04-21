@@ -31,7 +31,7 @@ public class DashboardController {
 //        return "redirect:/dashboard";
 //    }
 
-    @GetMapping
+    @GetMapping("/dashboard")
     public String dashboard(Model model) {
         model.addAttribute("contact", new Contact()); // Ensure the form model is present
         return "index"; 
